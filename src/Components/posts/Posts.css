@@ -1,0 +1,7 @@
+.posts {
+    max-width: 810px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 5vh 2.5vw;
+}

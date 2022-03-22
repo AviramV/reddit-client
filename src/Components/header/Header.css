@@ -1,0 +1,42 @@
+header {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    background-color: rgb(70, 70, 70);
+    box-shadow: 0 -10px 20px 1px rgba(255, 255, 255, .5);
+    display: flex;
+}
+
+header div {
+    --input-width: 405px;
+    --gap-width: 25px;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: var(--gap-width);
+    justify-content: center;
+    margin-right: 82px;
+}
+
+header > div > * {
+    flex: 0 1 calc(var(--input-width) - var(--gap-width)/2);
+    height: 50px;
+}
+
+input {
+      width: 100%;
+      height: 100%;
+      border-radius: 10px;
+      border: gray solid 1px;
+}
+
+header .logo-container {
+    flex: 0 1 82px;
+    margin: 0;
+}
+
+#logo {
+    width: 100%;
+    height: 100%;
+}
