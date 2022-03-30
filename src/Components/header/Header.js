@@ -8,7 +8,8 @@ function Header() {
     return (
         <header>
             <div className="logo-container">
-              <img id="logo" alt="" src={logo} />
+                <div id="logo">&#9736;</div>
+              {/* <img id="logo" alt="" src={logo} /> */}
             </div>
             <div>
                 <SearchBar />
