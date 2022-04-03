@@ -1,3 +1,4 @@
+import { formatCompactNumber, formatRelativeDate } from '../../utils/formatters';
 import './Post.css';
 import comments from '../../icons/comments.svg';
 import arrowUp from '../../icons/arrowUp.svg';
@@ -20,8 +21,8 @@ function Post({
 
     // Format from Epoch to actual date
     const timeConvert = (time) => {
-        const date = new Date(time*1000).toLocaleString();
-        return date;
+        const date = new Date(time*1000);
+        return formatRelativeDate(date);
     }
     // Remove interfering charachters from URL string in JSON object
     const decodeURI = (uri) => uri.replace(/amp;/g, '')
@@ -74,7 +75,7 @@ function Post({
             <div className="post-header">
                 {/* <img src="https://i.imgur.com/aEcJUFK.png" alt="" /> */}
                 <p className="post-info">
-                Posted by <b>{author}</b> on {timeConvert(postTime)}
+                Posted by <b>{author}</b>,  {timeConvert(postTime)}
                 </p>
             </div>
             <h3>{content}</h3>
@@ -86,11 +87,11 @@ function Post({
             <div className="post-footer">
                 <div className="post-comments">
                     <img src={comments} alt="" />
-                    <p>{commentsAmount} Comments</p>
+                    <p>{formatCompactNumber(commentsAmount)} Comments</p>
                 </div>
                 <div className="post-votes">
                     <img src={arrowUp} alt="" />
-                    <p>{votes}</p>
+                    <p>{formatCompactNumber(votes)} Upvotes</p>
                     {/* <img src={arrowDown} alt="" /> */}
                 </div>
             </div>
