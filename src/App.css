@@ -1,6 +1,6 @@
 .App {
   margin-top: 82px;
-  min-height: 100vh;
+  min-height: calc(100vh - 82px);
   display: flex;
   flex-direction: column;
   justify-content: center;

@@ -8,10 +8,10 @@ function Header() {
     return (
         <header>
             <div className="logo-container">
-                <div id="logo">&#9736;</div>
+                <div id="logo"></div>
               {/* <img id="logo" alt="" src={logo} /> */}
             </div>
-            <div>
+            <div className="inputs">
                 <SearchBar />
                 <Filter />
             </div>
