@@ -12,13 +12,6 @@ header {
 
 }
 
-@media screen and (max-width: 800px) {
-    header {
-       display: flex;
-       justify-content: center;
-    }
-}
-
 header div {
     --input-width: 405px;
     --gap-width: 25px;
@@ -49,10 +42,26 @@ header .logo-container {
 }
 
 #logo {
-    font-size: clamp(1.5rem, 5vw, 100px);
+    font-size: clamp(3rem, 5vw, 100px);
     height: 82px;
 }
 
 #logo::after {
     content: 'almst\2608';
+    color: rgb(20, 128, 184)
+}
+
+@media screen and (max-width: 800px) {
+    header {
+       display: flex;
+       justify-content: center;
+    }
+
+    #logo {
+        font-size: 3rem;
+    }
+    
+    #logo::after {
+        content: '\2608';
+    }
 }
