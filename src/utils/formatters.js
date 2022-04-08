@@ -33,3 +33,10 @@ export function formatRelativeDate(toDate, fromDate = new Date()) {
     duration /= division.amount
   }
 }
+
+// Remove interfering charachters from URL string in JSON object
+export const purgeString = (string) => {
+  return string.replace(/amp;/g, '')
+  .replaceAll("&lt;", '<')
+  .replaceAll("&gt;", '>');
+}

@@ -10,7 +10,6 @@ function App() {
       <Header />
       <main className="App">
       <Posts />
-      <Loader />
       </main>
     </>
   );

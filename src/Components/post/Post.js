@@ -1,9 +1,10 @@
-import { formatCompactNumber, formatRelativeDate } from '../../utils/formatters';
+import { formatCompactNumber, formatRelativeDate, purgeString } from '../../utils/formatters';
 import './Post.css';
 import comments from '../../icons/comments.svg';
 import arrowUp from '../../icons/arrowUp.svg';
 import arrowDown from '../../icons/arrowDown.svg';
-import React from 'react';
+import React, { useEffect } from 'react';
+import dashjs from 'dashjs';
 
 function Post({
     content,
@@ -22,16 +23,16 @@ function Post({
 
     const { is_gallery } = props;
 
+    useEffect(() => {
+        if (isVideo) {
+            dashjs.MediaPlayerFactory.createAll('video') 
+        }
+    }, [isVideo]);
+
     // Format from Epoch to actual date
     const timeConvert = (time) => {
         const date = new Date(time*1000);
         return formatRelativeDate(date);
-    }
-    // Remove interfering charachters from URL string in JSON object
-    const purgeString = (string) => {
-       return string.replace(/amp;/g, '')
-       .replaceAll("&lt;", '<')
-       .replaceAll("&gt;", '>');
     }
 
     // Return correct element according to type of media in post (link/image/video)
@@ -52,7 +53,6 @@ function Post({
                             decoding="auto"
                             alt="" 
                             src={imageSource.url}
-                            
                             srcSet={imageResolutions.map(el => `${purgeString(el.url)} ${el.width}w`)}
                             sizes="(min-width: 960px) 40vw ,100vw" />
                         </a>
@@ -76,7 +76,7 @@ function Post({
                 const hlsURL = purgeString(props.media.reddit_video.hls_url);
                 return (
                     <video 
-                        autoPlay
+                        autoPlay={true}
                         muted
                         preload="auto"
                         controls
