@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-
+const homePage =  'https://www.reddit.com/.json'
 
 const initialState = {
     posts: [], // Set to reddit home page posts, using the API.
@@ -10,8 +10,8 @@ const initialState = {
 
 export const fetchPosts = createAsyncThunk(
     'posts/fetchPosts',
-    async () => {
-      const response = await fetch('https://www.reddit.com/.json');
+    async (fetchURL = homePage) => {
+      const response = await fetch(fetchURL);
       // The value we return becomes the `fulfilled` action payload
       const json = await response.json();
       const posts = json.data.children;

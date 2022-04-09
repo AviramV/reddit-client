@@ -12,7 +12,7 @@ function Posts() {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(fetchPosts());
+        dispatch(fetchPosts('https://www.reddit.com/.json'));
       }, [dispatch]);
 
     return isLoading ? <Loader /> : hasError ? <code>Couldn't laod posts, please try again later</code> :
