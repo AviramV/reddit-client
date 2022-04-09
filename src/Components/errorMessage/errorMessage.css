@@ -1,0 +1,11 @@
+.error-message {
+    text-align: center;
+    line-height: 1.6;
+    font-family: source-code-pro, 
+                 Menlo, Monaco, Consolas, 
+                 'Courier New', monospace;
+  }
+  
+  .emoji {
+    font-size: 5em
+  }

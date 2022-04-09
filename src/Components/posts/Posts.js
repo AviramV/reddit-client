@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { selectLoading, selectPosts, fetchPosts } from './postsSlice';
 import Post from '../post/Post';
 import Loader from '../loader/Loader';
+import ErrorMessage from '../errorMessage/errorMessage';
 import './Posts.css'
 
 function Posts() {
@@ -15,7 +16,9 @@ function Posts() {
         dispatch(fetchPosts());
       }, [dispatch]);
 
-    return isLoading ? <Loader /> : hasError ? <code>Couldn't laod posts, please try again later</code> :
+    return isLoading ? <Loader /> : 
+    hasError ? <ErrorMessage hasError={hasError}/> :
+    (posts.length < 1) ? <ErrorMessage /> :
     (
         <div className="posts">
         {posts.map((post) => <Post props={post.data}
