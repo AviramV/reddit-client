@@ -9,14 +9,17 @@ function SearchBar() {
     const dispatch = useDispatch()
 
     const getTerm = (e) => {
-        setSearchTerm(e.target.value);
+        const trimmedTerm = e.target.value.trimStart();
+        setSearchTerm(trimmedTerm);
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        if (!searchTerm) return;
         dispatch(setTerm(searchTerm));
+        const searchURIBase = `https://www.reddit.com/search.json?q=`;
         const encodedTerm = encodeURI(searchTerm);
-        dispatch(fetchPosts(`https://www.reddit.com/search.json?q=${encodedTerm}`));
+        dispatch(fetchPosts(`${searchURIBase}${encodedTerm}`));
         setSearchTerm('');
     }
 
@@ -26,7 +29,7 @@ function SearchBar() {
                 onChange={getTerm}
                 value={searchTerm}
                 type="search"
-                name="q" 
+                required
                 placeholder="Search posts...">
             </input>
         </form>
