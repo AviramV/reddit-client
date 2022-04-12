@@ -1,4 +1,15 @@
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { selectCategories, fetchCategories } from './filterSlice';
+
 function Filter() {
+    const categories = useSelector(selectCategories);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(fetchCategories());
+    }, [])
+
     return (
     <form>
         <input
@@ -7,10 +18,12 @@ function Filter() {
             placeholder="Choose Category"
         />
         <datalist id="categories">
-            <option value="cat 1"/>
-            <option value="cat 2"/>
-            <option value="cat 3"/>
-            <option value="cat 4"/>
+            {
+                categories.map((category, index) => {
+                    const name = category.data.display_name_prefixed;
+                    return <option key={index} value={name}/>
+                })
+            }
         </datalist>
     </form>
     );
