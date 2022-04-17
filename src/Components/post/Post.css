@@ -27,6 +27,10 @@
     gap: 5px;
 }
 
+.post-comments {
+    cursor: pointer;
+}
+
 .post-footer img {
     width: 16px;
 }

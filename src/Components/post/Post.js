@@ -1,4 +1,6 @@
 import { formatCompactNumber, formatRelativeDate, purgeString } from '../../utils/formatters';
+import { useDispatch } from 'react-redux';
+import { fetchComments } from '../comments/commentsSlice';
 import './Post.css';
 import comments from '../../icons/comments.svg';
 import arrowUp from '../../icons/arrowUp.svg';
@@ -21,7 +23,8 @@ function Post({
     props
 }) {
 
-    const { is_gallery } = props;
+    const { is_gallery, permalink } = props;
+    const dispatch = useDispatch();
 
     useEffect(() => {
         if (isVideo) {
@@ -98,6 +101,10 @@ function Post({
         }
     }
 
+    const handleClick = () => {
+        dispatch(fetchComments(permalink));
+    }
+
     return (
         <div className="post">
             <div className="post-header">
@@ -119,7 +126,7 @@ function Post({
                 </div>
             }
             <div className="post-footer">
-                <div className="post-comments">
+                <div className="post-comments" onClick={handleClick}>
                     <img src={comments} alt="" />
                     <p>{formatCompactNumber(commentsAmount)} Comments</p>
                 </div>
