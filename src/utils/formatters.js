@@ -34,6 +34,12 @@ export function formatRelativeDate(toDate, fromDate = new Date()) {
   }
 }
 
+// Format from Epoch to actual date
+export function timeConvert(time) {
+  const date = new Date(time*1000);
+  return formatRelativeDate(date);
+}
+
 // Remove interfering charachters from URL string in JSON object
 export const purgeString = (string) => {
   return string.replace(/amp;/g, '')

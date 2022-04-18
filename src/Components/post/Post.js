@@ -1,12 +1,14 @@
-import { formatCompactNumber, formatRelativeDate, purgeString } from '../../utils/formatters';
-import { useDispatch } from 'react-redux';
-import { fetchComments } from '../comments/commentsSlice';
-import './Post.css';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
+import { formatCompactNumber, timeConvert, purgeString } from '../../utils/formatters';
+import { clearComments } from '../comments/commentsSlice';
+import dashjs from 'dashjs';
+import Loader from '../loader/Loader';
 import comments from '../../icons/comments.svg';
 import arrowUp from '../../icons/arrowUp.svg';
 import arrowDown from '../../icons/arrowDown.svg';
-import React, { useEffect } from 'react';
-import dashjs from 'dashjs';
+import Comments from '../comments/Comments';
+import './Post.css';
+
 
 function Post({
     content,
@@ -23,8 +25,8 @@ function Post({
     props
 }) {
 
+    const [showComments, setShowComments] = useState(false);
     const { is_gallery, permalink } = props;
-    const dispatch = useDispatch();
 
     useEffect(() => {
         if (isVideo) {
@@ -32,11 +34,6 @@ function Post({
         }
     }, [isVideo]);
 
-    // Format from Epoch to actual date
-    const timeConvert = (time) => {
-        const date = new Date(time*1000);
-        return formatRelativeDate(date);
-    }
 
     // Return correct element according to type of media in post (link/image/video)
     const mediaComponent = () => {
@@ -79,7 +76,7 @@ function Post({
                 const hlsURL = purgeString(props.media.reddit_video.hls_url);
                 return (
                     <video 
-                        autoPlay={true}
+                        autoPlay={false}
                         muted
                         preload="auto"
                         controls
@@ -101,8 +98,8 @@ function Post({
         }
     }
 
-    const handleClick = () => {
-        dispatch(fetchComments(permalink));
+    const handleCommentsClick = () => {
+        setShowComments(showComments => !showComments);
     }
 
     return (
@@ -126,7 +123,7 @@ function Post({
                 </div>
             }
             <div className="post-footer">
-                <div className="post-comments" onClick={handleClick}>
+                <div className="post-comments" onClick={handleCommentsClick}>
                     <img src={comments} alt="" />
                     <p>{formatCompactNumber(commentsAmount)} Comments</p>
                 </div>
@@ -136,6 +133,12 @@ function Post({
                     {/* <img src={arrowDown} alt="" /> */}
                 </div>
             </div>
+                {
+                    showComments &&
+                    <Comments showComments={showComments} 
+                    permalink={permalink} 
+                    handleCommentsClick={handleCommentsClick}/>
+                }
         </div>
     )
 }
