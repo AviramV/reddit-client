@@ -10,9 +10,9 @@ function Comment({ body, ups, author, created, replies }) {
             <div className="comment-header">
                 <p className="comment-info"><b>{author}</b>, {timeConvert(created)}</p>
             </div>
-            <div className="comment-content">{body}</div>
+            <div className="comment-content" dangerouslySetInnerHTML={{__html: purgeString(body)}}></div>
             <div className="comment-footer">
-                <div className="comment-replies">
+                <div className="comment-replies" >
                     <img src={comments} alt="" />
                     <p>{formatCompactNumber(replies.length) ?? 'No'} Replies</p>
                 </div>

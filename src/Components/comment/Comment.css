@@ -2,8 +2,10 @@
     flex: 0 1 100%;
     padding: 5px 1.75%;
     margin-bottom: 25px;
-    background-color: rgba(128,128,128, 0.1);
+    background-color: var(--card-bg);
+    color: antiquewhite;
     border-radius: .75rem;
+    width: min(710px, 85vw);
 }
 
 .comment-header {
@@ -53,4 +55,8 @@ video, #main-image, iframe {
     /* height: min-content; */
     display: block;
     margin-inline: auto;
+}
+
+.comment-content p:first-of-type {
+    margin: 0;
 }

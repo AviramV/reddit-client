@@ -1,0 +1,60 @@
+.skeleton__comment {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: min(710px, 85vw);
+    height: 20vh;
+    border-radius: .75rem;
+    background-color: var(--card-bg);
+    padding: .25em 1.75%;
+    margin-bottom: 1.25em;
+}
+
+.skeleton__comment-header,
+.skeleton__comment-content div,
+.skeleton__comment-replies,
+.skeleton__comment-votes
+ {
+    width: 50%;
+    height: .75em;
+    border-radius: .75rem;
+    background-color: hsl(0,0%,22%);
+    background-image: linear-gradient(15deg, hsl(0,0%,22%), hsl(0,0%,27%), hsl(0,0%,22%));
+    background-size: 500px;
+    background-repeat: no-repeat;
+    animation-name: glimmer;
+    animation-duration: 2.5s;
+    animation-timing-function: cubic-bezier(.6,.11,.05,.99)-out;
+    animation-iteration-count: infinite;
+}
+
+.skeleton__comment-content div {
+    width: 100%;
+    height: 1em;
+    margin-bottom: .5em;
+}
+.skeleton__comment-content div:nth-of-type(2n) {
+    width: 75%;
+}
+
+.skeleton__comment-footer {
+    display: flex;
+    height: .75em;
+
+}
+
+.skeleton__comment-replies, .skeleton__comment-votes {
+    width: 10%;
+    align-items: center;
+    margin-right: 25px;
+    gap: 5px;
+}
+
+@keyframes glimmer {
+    from {
+        background-position: -1000px;
+    }
+    to {
+        background-position: 1000px;
+    }
+}

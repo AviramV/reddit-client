@@ -1,3 +1,37 @@
-dialog {
+dialog, dialog > button {
     z-index: 1;
+    border-radius: .75rem;
+    background-color: transparent;
+    border: 0;
+}
+
+dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.4);
+    background-blend-mode:lighten;
+    backdrop-filter: blur(5px);
+}
+
+dialog button {
+    margin-bottom: 1em;
+    font-weight: 900;
+    background-color: antiquewhite;
+    color: var(--main-blue);
+    position: fixed;
+    top: .5em;
+    left: 50vw;
+    cursor: pointer;
+    transition: all ease 250ms;
+}
+
+dialog button:hover {
+    background-color: var(--main-blue);
+    color: antiquewhite;
+}
+
+dialog button:focus-visible {
+    outline-color: var(--main-blue);
+}
+
+dialog > li {
+    list-style: none;
 }
