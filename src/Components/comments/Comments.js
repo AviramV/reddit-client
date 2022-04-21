@@ -35,12 +35,12 @@ function Comments({ showComments, permalink, handleCommentsClick }) {
             {loading && <CommentSkeleton amount={5}/>}
             {   
                 comments.map((comment) => {
-                    const { body_html, ups, author, created, id } = comment.data;
-                    const replies = comment.data.replies?.data?.children || "No";
+                    const { body_html, score, author, created, id } = comment.data;
+                    const replies = comment.data.replies?.data?.children;
                     return <Comment
                             key={id}
                             body={body_html}
-                            ups={ups}
+                            score={score}
                             author={author}
                             created={created}
                             replies={replies}

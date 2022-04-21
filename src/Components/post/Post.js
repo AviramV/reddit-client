@@ -129,8 +129,8 @@ function Post({
                 </div>
                 <div className="post-votes">
                     <img src={arrowUp} alt="" />
-                    <p>{formatCompactNumber(votes)} Upvotes</p>
-                    {/* <img src={arrowDown} alt="" /> */}
+                    <p>{formatCompactNumber(votes)}</p>
+                    <img src={arrowDown} alt="" />
                 </div>
             </div>
                 {
