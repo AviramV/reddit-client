@@ -4,7 +4,7 @@ header {
     top: 0;
     z-index: 1;
     background-color: rgb(70, 70, 70);
-    box-shadow: 0 -10px 20px 1px rgba(255, 255, 255, .5);
+    box-shadow: 0 -10px 20px 12px rgb(0 0 0);
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
     grid-template-areas: "logo boxes ";
@@ -21,9 +21,9 @@ header div {
     justify-content: center;
 }
 
-header > div > * {
+header > div > form {
     flex: 0 1 calc(var(--input-width) - var(--gap-width)/2);
-    height: 50px;
+    height: 2em;
 }
 
 input, select {
@@ -31,6 +31,15 @@ input, select {
       height: 100%;
       border-radius: 0.5rem;
       border: gray solid 1px;
+      color-scheme: dark;
+      padding-left: .75em;
+      font-size: clamp(14px, calc(10px + 1vmin), 1rem)
+}
+
+input:focus, input:focus-visible
+select:focus, select:focus-visible {
+    border-color: var(--main-blue);
+    outline-color: var(--main-blue);
 }
 
 .inputs {
