@@ -44,5 +44,6 @@ const commentsSlice = createSlice({
 
 export const selectComments = (state) => state.comments.comments;
 export const selectLoading = (state) => state.comments.loading;
+export const selectError = (state) => state.comments.hasError;
 export const { clearComments } = commentsSlice.actions;
 export default commentsSlice.reducer;

@@ -1,16 +1,18 @@
 import { Suspense, useEffect, useRef, lazy, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchComments, selectComments, selectLoading, clearComments } from './commentsSlice';
+import { fetchComments, selectComments, selectLoading, selectError, clearComments } from './commentsSlice';
 import Loader from '../loader/Loader';
 import './Comments.css'
 import Comment from '../comment/Comment';
 import CommentSkeleton from '../comment/CommentSkeleton';
+import ErrorMessage from '../errorMessage/errorMessage';
 // const Comment = lazy(() => import('../comment/Comment'));
 
 
 function Comments({ showComments, permalink, handleCommentsClick }) {
     const comments = useSelector(selectComments).filter(el => el.kind === 't1');
     const loading = useSelector(selectLoading);
+    const hasError = useSelector(selectError);
     const dispatch = useDispatch();
     const modal = useRef(null);
     
@@ -28,6 +30,8 @@ function Comments({ showComments, permalink, handleCommentsClick }) {
         handleCommentsClick();
         dispatch(clearComments());
     }
+
+  if (hasError) return <ErrorMessage hasError={hasError} type="comments"/>
 
   return (
         <dialog ref={modal} onClose={handleCommentsClick}>

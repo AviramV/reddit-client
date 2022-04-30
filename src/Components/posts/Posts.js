@@ -17,7 +17,7 @@ function Posts() {
       }, [dispatch]);
 
     return isLoading ? <Loader /> : 
-    hasError ? <ErrorMessage hasError={hasError}/> :
+    hasError ? <ErrorMessage hasError={hasError} type="posts" />:
     (posts.length < 1) ? <ErrorMessage /> :
     (
         <div className="posts">

@@ -1,8 +1,8 @@
 import './errorMessage.css';
 
-export default function ErrorMessage({ hasError }) {
+export default function ErrorMessage({ hasError, type }) {
     const message = hasError ?
-            <p className="error-message">Couldn't load posts, please try again later.</p> :
+            <p className="error-message">Couldn't load {type}, please try again later.</p> :
             <p className="error-message">Reddit doesn't know anything about that...<br/> Try something else!</p>;
 
     const emoji = hasError ? '🙅🏻‍♀️' : '🤷🏻‍♂️';
