@@ -43,8 +43,8 @@ function Comment({ body, score, author, created, replies }) {
                     <div className="replies">
                         {
                     filteredReplies().map(reply => {
-                        const { id, body, score, author, created } = reply.data;
-                        return <Comment key={id} body={body} score={score} author={author} created={created} />
+                        const { id, body_html, score, author, created } = reply.data;
+                        return <Comment key={id} body={body_html} score={score} author={author} created={created} />
                     }) 
                         }
                     </div>
