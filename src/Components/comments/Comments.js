@@ -34,7 +34,7 @@ function Comments({ showComments, permalink, handleCommentsClick }) {
   if (hasError) return <ErrorMessage hasError={hasError} type="comments"/>
 
   return (
-        <dialog ref={modal} onClose={handleCommentsClick}>
+        <dialog ref={modal} onClose={handleCommentsClick} >
             <button onClick={handleClick}>X</button>
             {loading && <CommentSkeleton amount={5}/>}
             {   

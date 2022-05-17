@@ -50,9 +50,14 @@ header .logo-container {
     grid-area: logo;
 }
 
+header .logo-container a {
+    text-decoration: none;
+}
+
 #logo {
     font-size: clamp(3rem, 5vw, 100px);
     height: 82px;
+    cursor: pointer;
 }
 
 #logo::after {

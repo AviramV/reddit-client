@@ -3,10 +3,13 @@ import { setTerm } from './searchBarSlice';
 import { useDispatch } from 'react-redux';
 import './SearchBar.css'
 import { fetchPosts } from '../posts/postsSlice';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 function SearchBar() {
     const [searchTerm, setSearchTerm] = useState('');
-    const dispatch = useDispatch()
+    const [searchParams, setSearchParams] = useSearchParams();
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const getTerm = (e) => {
         const trimmedTerm = e.target.value.trimStart();
@@ -17,9 +20,10 @@ function SearchBar() {
         e.preventDefault();
         if (!searchTerm) return;
         dispatch(setTerm(searchTerm));
-        const searchURIBase = `https://www.reddit.com/search.json?q=`;
-        const encodedTerm = encodeURI(searchTerm);
-        dispatch(fetchPosts(`${searchURIBase}${encodedTerm}`));
+        navigate({
+            pathname: 'search/',
+            search: `q=${searchTerm}`
+        })
         setSearchTerm('');
     }
 
