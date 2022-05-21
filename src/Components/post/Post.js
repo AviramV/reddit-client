@@ -90,9 +90,10 @@ function Post({
                 )
 
                 case "rich:video":
-                    const embedString = decodeURIComponent(props.media.oembed.html);
+                    const embedString = props.media.oembed.html;
                     const embedHtml = purgeString(embedString);
-                    return <div dangerouslySetInnerHTML={{__html: embedHtml}}></div>
+                    const src = embedHtml.split(' ').filter(el => el.includes('src=')).toString().split('src="')[1].replace('"', '')
+                    return <iframe src={src} style={{width:'100%', height:600}} />
             default:
                 break;
         }
