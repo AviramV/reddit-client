@@ -1,7 +1,6 @@
-import { Suspense, useEffect, useRef, lazy, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchComments, selectComments, selectLoading, selectError, clearComments } from './commentsSlice';
-import Loader from '../loader/Loader';
 import './Comments.css'
 import Comment from '../comment/Comment';
 import CommentSkeleton from '../comment/CommentSkeleton';

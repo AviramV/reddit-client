@@ -1,6 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { fetchPosts } from '../posts/postsSlice';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './errorMessage.css';
 
 export default function ErrorMessage({ hasError, type }) {

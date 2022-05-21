@@ -11,7 +11,7 @@ function Filter() {
 
     useEffect(() => {
         dispatch(fetchCategories());
-    }, []);
+    }, [dispatch]);
 
     const handleChange = ({ target }) => {
         if (target.value === 'Select category...') return;
@@ -26,7 +26,6 @@ function Filter() {
                 {
                     categories.map((category) => {
                         const name = category.data.display_name;
-                        const { url } = category.data;
                         return <option key={name} value={name} type="text">{name}</option>
                     })
                 }

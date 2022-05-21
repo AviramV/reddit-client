@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectLoading, selectPosts, fetchPosts } from './postsSlice';
 import { setCategory } from '../filter/filterSlice';
-import { selectSearchTerm } from '../searchBar/searchBarSlice';
 import { useLocation, useParams, useSearchParams } from 'react-router-dom';
 
 import Post from '../post/Post';
@@ -14,12 +13,11 @@ import './Posts.css'
 function Posts() {
     const isLoading = useSelector(selectLoading);
     const posts = useSelector(selectPosts);
-    const searchTerm = useSelector(selectSearchTerm);
     const { hasError } = useSelector(state => state.posts);
     const dispatch = useDispatch();
     const [searchParams] = useSearchParams('');
     const location = useLocation();
-    const { search, pathname } = location;
+    const { pathname } = location;
     const { categoryName } = useParams();
 
     useEffect(() => {

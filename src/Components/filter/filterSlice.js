@@ -14,7 +14,7 @@ const initialState = {
 export const fetchCategories = createAsyncThunk(
   'categoryFilter/fetchCategories',
   async () => {
-    const response = await fetch('https://www.reddit.com/subreddits.json');
+    const response = await fetch(URL);
     // The value we return becomes the `fulfilled` action payload
     const json = await response.json();
     const categories = json.data.children;
