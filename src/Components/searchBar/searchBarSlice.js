@@ -1,6 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = "";
+const location = new URLSearchParams(window.location.href);
+const splitURL = location.toString().split('=');
+const queryTerm = splitURL?.[1];
+
+const initialState = queryTerm || "";
 
 const searchBarSlice = createSlice({
     name: 'searchTerm',

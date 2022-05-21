@@ -2,8 +2,12 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 const URL = 'https://www.reddit.com/subreddits.json'
 
+const splitFilter = window.location.href.split('/');
+const filterLength = splitFilter.length
+const filter = splitFilter[filterLength - 1]
+
 const initialState = {
-  currentCategory: '',
+  currentCategory: filter || '',
   categories: [],
 }
 

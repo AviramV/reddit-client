@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectLoading, selectPosts, fetchPosts } from './postsSlice';
+import { setCategory } from '../filter/filterSlice';
 import { selectSearchTerm } from '../searchBar/searchBarSlice';
 import { useLocation, useParams, useSearchParams } from 'react-router-dom';
 
@@ -24,6 +25,7 @@ function Posts() {
     useEffect(() => {
         if (pathname.includes('/category')) {
             dispatch(fetchPosts({ fetchBy: 'filter', term: categoryName }));
+            dispatch(setCategory(categoryName))
             return;
         }
         if (pathname.includes('search/')) {
@@ -31,14 +33,16 @@ function Posts() {
             console.log('query:', searchParams.get('q'))
             const getTerm = query => searchParams.get(query);
             dispatch(fetchPosts({ fetchBy: 'search', term: getTerm('q') }));
+            dispatch(setCategory(''));
             return;
         }
         if (pathname === '/') {
             dispatch(fetchPosts());
+            dispatch(setCategory(''));
             return;
         }
 
-    }, [search, pathname]);
+    }, [/*search, pathname*/location]);
 
 
     return isLoading ? <Loader /> :

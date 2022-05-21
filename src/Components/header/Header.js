@@ -1,25 +1,18 @@
 import SearchBar from '../searchBar/SearchBar';
 import Filter from '../filter/Filter';
-import { fetchPosts } from '../posts/postsSlice';
 
-import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import './Header.css';
 
 function Header() {
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
-
-    const handleClick = () => {
-        navigate('/');
-        dispatch(fetchPosts());
-    }
 
     return (
         <header>
             <div className="logo-container">
-                <div id="logo" onClick={handleClick}></div>
+                <Link to="/">
+                    <div id="logo"></div>
+                </Link>
             </div>
             <div className="inputs">
                 <SearchBar />
