@@ -30,7 +30,7 @@ function Post({
 
     useEffect(() => {
         if (isVideo) {
-            dashjs.MediaPlayerFactory.createAll('video') 
+            dashjs.MediaPlayerFactory.createAll('video')
         }
     }, [isVideo]);
 
@@ -40,60 +40,68 @@ function Post({
         switch (hint) {
             case "link":
                 return <a className="post-link" href={url}>{domain}</a>;
-        
+
             case "image":
                 const isGif = props.preview.images[0].variants?.gif?.source;
                 const imageSource = props.preview.images[0].source;
                 const imageResolutions = props.preview.images[0].resolutions;
                 if (!isGif) {
                     return <a target="_blank" rel="noreferrer" href={url}>
-                            <img 
-                            id="main-image" 
+                        <img
+                            id="main-image"
                             loading="lazy"
                             decoding="auto"
-                            alt="" 
+                            alt=""
                             src={imageSource.url}
                             srcSet={imageResolutions.map(el => `${purgeString(el.url)} ${el.width}w`)}
                             sizes="(min-width: 960px) 40vw ,100vw" />
-                        </a>
+                    </a>
                 }
                 return <a target="_blank" rel="noreferrer" href={url}>
-                        <img 
-                        id="main-image" 
+                    <img
+                        id="main-image"
                         loading="lazy"
                         decoding="auto"
-                        alt="" 
-                        src={url} 
+                        alt=""
+                        src={url}
                         width={isGif.width}
                         height={isGif.height}
-                        />
-                    </a>
-        
+                    />
+                </a>
+
             case "hosted:video":
                 const posterImg = purgeString(props.preview.images[0].source.url);
                 const videoURL = purgeString(props.media.reddit_video.fallback_url);
                 const dashURL = purgeString(props.media.reddit_video.dash_url);
                 const hlsURL = purgeString(props.media.reddit_video.hls_url);
                 return (
-                    <video 
+                    <video
                         autoPlay={false}
                         muted
                         preload="auto"
                         controls
                         poster={posterImg}
-                        >
-                            <source src={dashURL} type="application/dash+xml"/>
-                            <source src={hlsURL} type="application/vnd.apple.mpegURL"/>
-                            <source src={videoURL} type="video/mp4"/>
-                            Sorry, your browser doesn't support embedded videos.
+                    >
+                        <source src={dashURL} type="application/dash+xml" />
+                        <source src={hlsURL} type="application/vnd.apple.mpegURL" />
+                        <source src={videoURL} type="video/mp4" />
+                        Sorry, your browser doesn't support embedded videos.
                     </video>
                 )
 
-                case "rich:video":
-                    const embedString = props.media.oembed.html;
-                    const embedHtml = purgeString(embedString);
-                    const src = embedHtml.split(' ').filter(el => el.includes('src=')).toString().split('src="')[1].replace('"', '')
-                    return <iframe src={src} style={{width:'100%', height:600}} />
+            case "rich:video":
+                const { width, height } = props.media.oembed;
+                const embedString = props.media.oembed.html;
+                const embedHtml = purgeString(embedString);
+                const src = embedHtml.split(' ').filter(el => el.includes('src=')).toString().split('src="')[1].replace('"', '')
+                return <iframe
+                    src={src}
+                    width={width}
+                    height={height}
+                    loading="lazy"
+                    frameBorder="0"
+                    allow="fullscreen"
+                    fetchpriority="auto" />
             default:
                 break;
         }
@@ -108,18 +116,18 @@ function Post({
             <div className="post-header">
                 {/* <img src="https://i.imgur.com/aEcJUFK.png" alt="" /> */}
                 <p className="post-info">
-                Posted by <b>{author}</b>, {timeConvert(postTime)}
+                    Posted by <b>{author}</b>, {timeConvert(postTime)}
                 </p>
             </div>
             <h3>{purgeString(content)}</h3>
             {!isSelf &&
                 <div className="media-container">
-                    {is_gallery && 
-                    <a target='_blank' 
-                       rel="noreferrer" 
-                       href={url}>
-                       View Gallery
-                    </a>}
+                    {is_gallery &&
+                        <a target='_blank'
+                            rel="noreferrer"
+                            href={url}>
+                            View Gallery
+                        </a>}
                     {mediaComponent()}
                 </div>
             }
@@ -134,12 +142,12 @@ function Post({
                     <img src={arrowDown} alt="" />
                 </div>
             </div>
-                {
-                    showComments &&
-                    <Comments showComments={showComments} 
-                    permalink={permalink} 
-                    handleCommentsClick={handleCommentsClick}/>
-                }
+            {
+                showComments &&
+                <Comments showComments={showComments}
+                    permalink={permalink}
+                    handleCommentsClick={handleCommentsClick} />
+            }
         </div>
     )
 }
