@@ -90,7 +90,7 @@ function Post({
                 )
 
             case "rich:video":
-                const { width, height } = props.media.oembed;
+                const { width, height, title } = props.media.oembed;
                 const embedString = props.media.oembed.html;
                 const embedHtml = purgeString(embedString);
                 const src = embedHtml.split(' ').filter(el => el.includes('src=')).toString().split('src="')[1].replace('"', '')
@@ -101,7 +101,8 @@ function Post({
                     loading="lazy"
                     frameBorder="0"
                     allow="fullscreen"
-                    fetchpriority="auto" />
+                    fetchpriority="auto"
+                    title={title} />
             default:
                 break;
         }
