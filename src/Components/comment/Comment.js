@@ -5,7 +5,6 @@ import arrowUp from '../../icons/arrowUp.svg';
 import arrowDown from '../../icons/arrowDown.svg';
 import './Comment.css'
 
-
 function Comment({ body, score, author, created, replies }) {
     const [showReplies, setShowReplies] = useState(false);
 

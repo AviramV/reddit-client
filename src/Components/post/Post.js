@@ -1,4 +1,5 @@
 import React, { useState, useEffect, Suspense, lazy } from 'react';
+import ReactMarkdown from 'react-markdown';
 import { formatCompactNumber, timeConvert, purgeString } from '../../utils/formatters';
 import { clearComments } from '../comments/commentsSlice';
 import dashjs from 'dashjs';
@@ -26,7 +27,7 @@ function Post({
 }) {
 
     const [showComments, setShowComments] = useState(false);
-    const { is_gallery, permalink } = props;
+    const { is_gallery, permalink, selftext } = props;
     const hasComments = commentsAmount > 0 ? true : false;
 
     useEffect(() => {
@@ -122,6 +123,7 @@ function Post({
                 </p>
             </div>
             <h3>{purgeString(content)}</h3>
+            {isSelf && <ReactMarkdown children={selftext} linkTarget={"_blank"}/>}
             {!isSelf &&
                 <div className="media-container">
                     {is_gallery &&
