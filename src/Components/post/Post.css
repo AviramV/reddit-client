@@ -51,8 +51,12 @@ a, .media-container .post-link {
 video, #main-image, iframe {
     max-width: 100%;
     max-height: 600px;
-    /* height: min-content; */
     display: block;
     margin-inline: auto;
+}
+
+video {
+    width: 100%;
+    background-color: black;
 }
 
