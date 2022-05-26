@@ -21,23 +21,25 @@ header div {
     justify-content: center;
 }
 
-header > div > form {
+header>div>form {
     flex: 0 1 calc(var(--input-width) - var(--gap-width)/2);
     height: 2em;
 }
 
-input, select {
-      width: 100%;
-      height: 100%;
-      border-radius: 0.5rem;
-      border: gray solid 1px;
-      color-scheme: dark;
-      padding-left: .75em;
-      font-size: clamp(14px, calc(10px + 1vmin), 1rem)
+input,
+select {
+    width: 100%;
+    height: 100%;
+    border-radius: 0.5rem;
+    border: gray solid 1px;
+    color-scheme: dark;
+    padding-left: .75em;
+    font-size: clamp(14px, calc(10px + 1vmin), 1rem)
 }
 
-input:focus, input:focus-visible
-select:focus, select:focus-visible {
+input:focus,
+input:focus-visible select:focus,
+select:focus-visible {
     border-color: var(--main-blue);
     outline-color: var(--main-blue);
 }
@@ -45,6 +47,27 @@ select:focus, select:focus-visible {
 .inputs {
     grid-area: boxes;
 }
+
+.search-bar {
+    padding-left: max(1.75em, 2vw, 32px);
+}
+
+#search {
+    position: relative;
+    height: inherit;
+}
+
+.icon-search {
+    position: absolute;
+    left: 0;
+    margin-left: .5em;
+    fill: dimgray;
+    pointer-events: none;
+    width: clamp(.8em, 18px, 1vw);
+}
+
+/* LOGO
+========== */
 
 header .logo-container {
     grid-area: logo;
@@ -55,27 +78,46 @@ header .logo-container a {
 }
 
 #logo {
-    font-size: clamp(3rem, 5vw, 100px);
+    font-size: clamp(2.5rem, 6.5vw, 82px);
     height: 82px;
     cursor: pointer;
+    color: var(--main-blue);
+    gap: 0;
 }
 
-#logo::after {
-    content: 'almst\2608';
+#logo-icon {
+    fill: var(--main-blue);
+    width: clamp(2rem, 5vw, 64px);
+    height: clamp(2rem, 5vw, 64px);
+}
+
+#logo::before {
+    content: 'almst';
     color: rgb(20, 128, 184)
 }
 
 @media screen and (max-width: 800px) {
     header {
-       display: flex;
-       justify-content: center;
+        display: flex;
+        justify-content: center;
     }
 
     #logo {
         font-size: 3rem;
     }
-    
-    #logo::after {
-        content: '\2608';
+
+    #logo::before {
+        content: '';
+    }
+}
+
+@media screen and (max-width: 450px) {
+    header {
+        padding-inline: 2vw;
+        gap: 2vw
+    }
+
+    header div {
+        gap: 2vw;
     }
 }
