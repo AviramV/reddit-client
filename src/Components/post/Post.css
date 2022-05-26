@@ -4,6 +4,7 @@
     margin-bottom: 25px;
     background-color: var(--card-bg);
     border-radius: .75rem;
+    word-break: break-word;
 }
 
 .post-header {

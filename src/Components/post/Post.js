@@ -27,6 +27,7 @@ function Post({
 
     const [showComments, setShowComments] = useState(false);
     const { is_gallery, permalink } = props;
+    const hasComments = commentsAmount > 0 ? true : false;
 
     useEffect(() => {
         if (isVideo) {
@@ -109,13 +110,13 @@ function Post({
     }
 
     const handleCommentsClick = () => {
+        if (!hasComments) return;
         setShowComments(showComments => !showComments);
     }
 
     return (
         <div className="post">
             <div className="post-header">
-                {/* <img src="https://i.imgur.com/aEcJUFK.png" alt="" /> */}
                 <p className="post-info">
                     Posted by <b>{author}</b>, {timeConvert(postTime)}
                 </p>
@@ -133,10 +134,13 @@ function Post({
                 </div>
             }
             <div className="post-footer">
-                <div className="post-comments" onClick={handleCommentsClick}>
-                    <img src={comments} alt="" />
-                    <p>{formatCompactNumber(commentsAmount)} Comments</p>
-                </div>
+                {
+                    hasComments &&
+                    <div className="post-comments" onClick={handleCommentsClick}>
+                        <img src={comments} alt="" />
+                        <p>{formatCompactNumber(commentsAmount)} Comments</p>
+                    </div>
+                }
                 <div className="post-votes">
                     <img src={arrowUp} alt="" />
                     <p>{formatCompactNumber(votes)}</p>
