@@ -14,6 +14,7 @@ function App() {
           <Route path="/" element={<Posts />} />
           <Route path="search" element={<Posts />} />
           <Route path="category/:categoryName" element={<Posts />} />
+          <Route path="/r/:categoryName" element={<Posts />} />
           <Route path="*" element={<ErrorMessage />} />
         </Routes>
       </main>

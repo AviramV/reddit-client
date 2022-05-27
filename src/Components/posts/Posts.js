@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectLoading, selectPosts, fetchPosts } from './postsSlice';
 import { setCategory } from '../filter/filterSlice';
-import { useLocation, useParams, useSearchParams } from 'react-router-dom';
+import { useLocation, useParams, useSearchParams, useNavigate } from 'react-router-dom';
 
 import Post from '../post/Post';
 import Loader from '../loader/Loader';
@@ -19,6 +19,7 @@ function Posts() {
     const location = useLocation();
     const { pathname } = location;
     const { categoryName } = useParams();
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (pathname.includes('/category')) {
@@ -39,8 +40,11 @@ function Posts() {
             dispatch(setCategory(''));
             return;
         }
+        if (pathname.includes('r/')) {
+            navigate('/category/' + categoryName, { replace: true });
+        }
 
-    }, [/*search, pathname*/location]);
+    }, [location]);
 
 
     return isLoading ? <Loader /> :
