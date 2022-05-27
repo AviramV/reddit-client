@@ -3,6 +3,7 @@ dialog, dialog > button {
     border-radius: .75rem;
     background-color: transparent;
     border: 0;
+    max-width: 100%;
 }
 
 dialog::backdrop {
