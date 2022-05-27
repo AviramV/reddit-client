@@ -44,7 +44,7 @@
 }
 
 .skeleton__comment-replies, .skeleton__comment-votes {
-    width: 10%;
+    width: 5ch;
     align-items: center;
     margin-right: 25px;
     gap: 5px;
