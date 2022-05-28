@@ -46,22 +46,8 @@
     width: 100%;
 }
 
-.media-container .post-link {
-    color: aquamarine;
-}
-
-.media-container .post-link::after {
-    content: ' \01F517';
-}
-
-video,
-#main-image,
-iframe {
+.comment-content * {
     max-width: 100%;
-    max-height: 600px;
-    /* height: min-content; */
-    display: block;
-    margin-inline: auto;
 }
 
 .comment-content p:first-of-type {
