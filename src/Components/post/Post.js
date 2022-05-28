@@ -1,13 +1,11 @@
 import React, { useState, useEffect, Suspense, lazy } from 'react';
-import ReactMarkdown from 'react-markdown';
 import { formatCompactNumber, timeConvert, purgeString } from '../../utils/formatters';
-import { clearComments } from '../comments/commentsSlice';
 import dashjs from 'dashjs';
-import Loader from '../loader/Loader';
-import comments from '../../icons/comments.svg';
-import arrowUp from '../../icons/arrowUp.svg';
-import arrowDown from '../../icons/arrowDown.svg';
+
+import ReactMarkdown from 'react-markdown';
 import Comments from '../comments/Comments';
+
+import { commentsIcon, arrowUp, arrowDown } from '../../icons/postIcons';
 import './Post.css';
 
 
@@ -139,14 +137,14 @@ function Post({
                 {
                     hasComments &&
                     <div className="post-comments" onClick={handleCommentsClick}>
-                        <img src={comments} alt="" />
+                        {commentsIcon}
                         <p>{formatCompactNumber(commentsAmount)} Comments</p>
                     </div>
                 }
                 <div className="post-votes">
-                    <img src={arrowUp} alt="" />
+                    {arrowUp}
                     <p>{formatCompactNumber(votes)}</p>
-                    <img src={arrowDown} alt="" />
+                    {arrowDown}
                 </div>
             </div>
             {

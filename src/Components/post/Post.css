@@ -33,8 +33,9 @@
     cursor: pointer;
 }
 
-.post-footer img {
+.post-footer svg {
     width: 16px;
+    height: 16px;
 }
 
 .media-container {

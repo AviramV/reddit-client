@@ -1,6 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="48" height="64" viewBox="0 0 48 64">
-  <g id="arrowUp" data-name="Up Arrow" transform="translate(-8 216)" fill="#fff" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M32-216,8-176H24v24H40v-24H56Z" stroke="none"/>
-    <path d="M 32 -214.0563507080078 L 9.766189575195312 -177 L 24 -177 C 24.55228042602539 -177 25 -176.5522766113281 25 -176 L 25 -153 L 39 -153 L 39 -176 C 39 -176.5522766113281 39.44771957397461 -177 40 -177 L 54.23381042480469 -177 L 32 -214.0563507080078 M 32 -216 L 56 -176 L 40 -176 L 40 -152 L 24 -152 L 24 -176 L 8 -176 L 32 -216 Z" stroke="none" fill="#707070"/>
-  </g>
-</svg>

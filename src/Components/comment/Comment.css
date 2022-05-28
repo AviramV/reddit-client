@@ -37,8 +37,9 @@
     cursor: pointer;
 }
 
-.comment-footer img {
+.comment-footer svg {
     width: 16px;
+    height: 16px;
 }
 
 .comment-content {

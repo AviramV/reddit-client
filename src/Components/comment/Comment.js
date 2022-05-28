@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { formatCompactNumber, timeConvert, purgeString } from '../../utils/formatters';
-import comments from '../../icons/comments.svg';
-import arrowUp from '../../icons/arrowUp.svg';
-import arrowDown from '../../icons/arrowDown.svg';
+
+import { commentsIcon, arrowUp, arrowDown } from '../../icons/postIcons';
 import './Comment.css'
 
 function Comment({ body, score, author, created, replies }) {
@@ -27,14 +26,14 @@ function Comment({ body, score, author, created, replies }) {
             <div className="comment-footer">
                 { hasReplies && filteredReplies().length > 0 &&
                     <div className="comment-replies" onClick={() => setShowReplies(!showReplies)}>
-                        <img src={comments} alt="" />
+                        {commentsIcon}
                         <p>{formatCompactNumber(filteredReplies().length)} {filteredReplies().length > 1 ? "Replies" : "Reply"}</p>
                     </div>
                 }
                 <div className="comment-votes">
-                    <img src={arrowUp} alt="" />
+                    {arrowUp}
                     <p>{formatCompactNumber(score)}</p>
-                    <img src={arrowDown} alt="" />
+                    {arrowDown}
                 </div>
             </div>
                 {
