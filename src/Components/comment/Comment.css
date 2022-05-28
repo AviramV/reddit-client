@@ -18,11 +18,15 @@
     display: flex;
 }
 
-.comment-info, .comment-info b, .comment-replies p, .comment-votes p {
+.comment-info,
+.comment-info b,
+.comment-replies p,
+.comment-votes p {
     font-size: 14px;
 }
 
-.comment-replies, .comment-votes {
+.comment-replies,
+.comment-votes {
     display: inline-flex;
     align-items: center;
     margin-right: 25px;
@@ -38,7 +42,7 @@
 }
 
 .comment-content {
- width: 100%;
+    width: 100%;
 }
 
 .media-container .post-link {
@@ -49,7 +53,9 @@
     content: ' \01F517';
 }
 
-video, #main-image, iframe {
+video,
+#main-image,
+iframe {
     max-width: 100%;
     max-height: 600px;
     /* height: min-content; */
@@ -64,4 +70,16 @@ video, #main-image, iframe {
 .replies .comment {
     width: 100%;
     background-color: hsl(0deg 0% 27%);
+    animation: reply-in 250ms ease-out
+}
+
+@keyframes reply-in {
+    from {
+        opacity: 0.25;
+        margin-top: -5px;
+    }
+
+    to {
+        opacity: 1;
+    }
 }

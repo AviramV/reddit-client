@@ -5,6 +5,7 @@
     background-color: var(--card-bg);
     border-radius: .75rem;
     word-break: break-word;
+    animation: post-in 250ms ease-out;
 }
 
 .post-header {
@@ -60,3 +61,14 @@ video {
     background-color: black;
 }
 
+@keyframes post-in {
+    from {
+        opacity: 0.25; 
+        transform: translateY(-5px);
+        margin-bottom: 20px;
+    }
+    to {
+        opacity: 1; 
+        transform: translateY(0px);
+    }
+}
