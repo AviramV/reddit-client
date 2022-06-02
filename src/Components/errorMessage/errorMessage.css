@@ -1,11 +1,26 @@
 .error-message {
-    text-align: center;
-    line-height: 1.6;
-    font-family: source-code-pro, 
-                 Menlo, Monaco, Consolas, 
-                 'Courier New', monospace;
-  }
-  
-  .emoji {
-    font-size: 5em
-  }
+  text-align: center;
+  line-height: 1.6;
+  font-family: source-code-pro,
+    Menlo, Monaco, Consolas,
+    'Courier New', monospace;
+}
+
+.emoji {
+  font-size: 5em
+}
+
+.error-button {
+  background-color: var(--main-blue);
+  padding: .15em .5em;
+  border-radius: .25em;
+  color: antiquewhite;
+  text-decoration: none;
+  box-shadow: black 0 0.15em 0.5em 0.0125em;
+  transition: all 150ms ease-in-out;
+}
+
+.error-button:hover,
+.error-button:active {
+  font-size: .95em;
+}

@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectLoading, selectPosts, fetchPosts } from './postsSlice';
+import { selectLoading, selectPosts, selectError, fetchPosts } from './postsSlice';
 import { setCategory } from '../filter/filterSlice';
 import { useLocation, useParams, useSearchParams, useNavigate } from 'react-router-dom';
 
@@ -13,7 +13,7 @@ import './Posts.css'
 function Posts() {
     const isLoading = useSelector(selectLoading);
     const posts = useSelector(selectPosts);
-    const { hasError } = useSelector(state => state.posts);
+    const { hasError, errorCode } = useSelector(selectError);
     const dispatch = useDispatch();
     const [searchParams] = useSearchParams('');
     const location = useLocation();
@@ -48,7 +48,7 @@ function Posts() {
 
 
     return isLoading ? <Loader /> :
-        hasError ? <ErrorMessage hasError={hasError} type="posts" /> :
+        hasError ? <ErrorMessage hasError={hasError} errorCode={errorCode} type="posts" /> :
             (posts.length < 1) ? <ErrorMessage /> :
                 (
                     <div className="posts">
