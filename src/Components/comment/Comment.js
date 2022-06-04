@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { formatCompactNumber, timeConvert, purgeString } from '../../utils/formatters';
 
+import ReadMore from '../readMore/ReadMore';
+
 import { commentsIcon, arrowUp, arrowDown } from '../../icons/postIcons';
 import './Comment.css'
 
@@ -22,7 +24,8 @@ function Comment({ body, score, author, created, replies }) {
             <div className="comment-header">
                 <p className="comment-info"><b>{author}</b>, {timeConvert(created)}</p>
             </div>
-            <div className="comment-content" dangerouslySetInnerHTML={{__html: purgeString(body)}}></div>
+            {/* <div className="comment-content" dangerouslySetInnerHTML={{__html: purgeString(body)}}></div> */}
+            <div className="comment-content"><ReadMore children={body} /></div>
             <div className="comment-footer">
                 { hasReplies && filteredReplies().length > 0 &&
                     <div className="comment-replies" onClick={() => setShowReplies(!showReplies)}>
@@ -41,8 +44,8 @@ function Comment({ body, score, author, created, replies }) {
                     <div className="replies">
                         {
                     filteredReplies().map(reply => {
-                        const { id, body_html, score, author, created } = reply.data;
-                        return <Comment key={id} body={body_html} score={score} author={author} created={created} />
+                        const { id, body, score, author, created } = reply.data;
+                        return <Comment key={id} body={body} score={score} author={author} created={created} />
                     }) 
                         }
                     </div>

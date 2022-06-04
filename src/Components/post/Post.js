@@ -2,8 +2,8 @@ import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { formatCompactNumber, timeConvert, purgeString } from '../../utils/formatters';
 import dashjs from 'dashjs';
 
-import ReactMarkdown from 'react-markdown';
 import Comments from '../comments/Comments';
+import ReadMore from '../readMore/ReadMore';
 
 import { commentsIcon, arrowUp, arrowDown } from '../../icons/postIcons';
 import './Post.css';
@@ -121,7 +121,7 @@ function Post({
                 </p>
             </div>
             <h3>{purgeString(content)}</h3>
-            {isSelf && <ReactMarkdown children={selftext} linkTarget={"_blank"}/>}
+            {isSelf && <ReadMore children={selftext} />}
             {!isSelf &&
                 <div className="media-container">
                     {is_gallery &&

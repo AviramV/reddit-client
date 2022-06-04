@@ -1,0 +1,5 @@
+.read-more {
+    font-family: monospace;
+    color: var(--main-blue);
+    cursor: pointer;
+}
