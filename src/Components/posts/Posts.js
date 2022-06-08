@@ -44,7 +44,7 @@ function Posts() {
             navigate('/category/' + categoryName, { replace: true });
         }
 
-    }, [location]);
+    }, [location, categoryName, dispatch, navigate, pathname, searchParams]);
 
 
     return isLoading ? <Loader /> :

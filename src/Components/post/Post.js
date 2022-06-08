@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Suspense, lazy } from 'react';
+import React, { useState, useEffect } from 'react';
 import { formatCompactNumber, timeConvert, purgeString } from '../../utils/formatters';
 import dashjs from 'dashjs';
 
@@ -20,7 +20,6 @@ function Post({
     isSelf,
     domain,
     hint,
-    video,
     props
 }) {
 

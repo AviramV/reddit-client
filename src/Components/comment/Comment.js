@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { formatCompactNumber, timeConvert, purgeString } from '../../utils/formatters';
+import { formatCompactNumber, timeConvert } from '../../utils/formatters';
 
 import ReadMore from '../readMore/ReadMore';
 
@@ -12,7 +12,7 @@ function Comment({ body, score, author, created, replies }) {
     // Replies are received in an array, no replies comes in as an empty string.
     // Check if a comment has replies
     const hasReplies = Array.isArray(replies);
-    
+
     // Filter out any element that's not a reply
     const filteredReplies = () => {
         if (!hasReplies) return;
@@ -25,10 +25,13 @@ function Comment({ body, score, author, created, replies }) {
                 <p className="comment-info"><b>{author}</b>, {timeConvert(created)}</p>
             </div>
             {/* <div className="comment-content" dangerouslySetInnerHTML={{__html: purgeString(body)}}></div> */}
-            <div className="comment-content"><ReadMore children={body} /></div>
+            <div className="comment-content">
+                <ReadMore children={body} />
+            </div>
             <div className="comment-footer">
-                { hasReplies && filteredReplies().length > 0 &&
-                    <div className="comment-replies" onClick={() => setShowReplies(!showReplies)}>
+                {hasReplies && filteredReplies().length > 0 &&
+                    <div className="comment-replies"
+                        onClick={() => setShowReplies(!showReplies)}>
                         {commentsIcon}
                         <p>{formatCompactNumber(filteredReplies().length)} {filteredReplies().length > 1 ? "Replies" : "Reply"}</p>
                     </div>
@@ -39,17 +42,23 @@ function Comment({ body, score, author, created, replies }) {
                     {arrowDown}
                 </div>
             </div>
-                {
-                    showReplies && 
-                    <div className="replies">
-                        {
-                    filteredReplies().map(reply => {
-                        const { id, body, score, author, created } = reply.data;
-                        return <Comment key={id} body={body} score={score} author={author} created={created} />
-                    }) 
-                        }
-                    </div>
-                }
+            {
+                showReplies &&
+                <div className="replies">
+                    {
+                        filteredReplies().map(reply => {
+                            const { id, body, score, author, created } = reply.data;
+                            return <Comment
+                                key={id}
+                                body={body}
+                                score={score}
+                                author={author}
+                                created={created}
+                            />
+                        })
+                    }
+                </div>
+            }
         </div>
     );
 }

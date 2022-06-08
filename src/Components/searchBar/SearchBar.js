@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { setTerm } from './searchBarSlice';
 import { useDispatch } from 'react-redux';
 import './SearchBar.css'
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function SearchBar() {
     const [searchTerm, setSearchTerm] = useState('');

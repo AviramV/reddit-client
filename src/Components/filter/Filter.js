@@ -1,6 +1,11 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { selectCategories, fetchCategories, setCategory, selectCurrentCategory } from './filterSlice';
+import {
+    selectCategories,
+    fetchCategories,
+    setCategory,
+    selectCurrentCategory
+} from './filterSlice';
 import { useNavigate } from "react-router-dom";
 
 function Filter() {
@@ -21,7 +26,7 @@ function Filter() {
 
     return (
         <form>
-            <select id="categories" className="header-input" onChange={handleChange} value={ currentCategory || "" }>
+            <select id="categories" className="header-input" onChange={handleChange} value={currentCategory || ""}>
                 <option>Select category...</option>
                 {
                     categories.map((category) => {
