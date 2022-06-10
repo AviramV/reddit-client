@@ -1,7 +1,7 @@
 .skeleton__comment {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
     width: min(710px, 85vw);
     height: 20vh;
     border-radius: .75rem;
@@ -27,6 +27,12 @@
     animation-duration: 2.5s;
     animation-timing-function: cubic-bezier(.6,.11,.05,.99)-out;
     animation-iteration-count: infinite;
+}
+
+.skeleton__comment-header,
+.skeleton__comment-footer {
+    margin-top: .75em;
+    margin-bottom: .75em
 }
 
 .skeleton__comment-content div {

@@ -20,8 +20,13 @@ dialog button {
     position: fixed;
     top: .5em;
     left: 50vw;
+    transform: translateX(-50%);
     cursor: pointer;
     transition: all ease 250ms;
+    z-index: 1000;
+    width: 1.5em;
+    border-radius: 50%;
+    aspect-ratio: 1 / 1;
 }
 
 dialog button:hover {
