@@ -4,13 +4,13 @@ import remarkGfm from 'remark-gfm';
 
 import './ReadMore.css'
 
-function ReadMore({ children }) {
+function ReadMore({ children, limit = 200 }) {
     const [isFullText, setFullText] = useState(false);
     const textLength = children.length;
     const buttonText = isFullText ? '<< Show less' : 'Read more >>';
 
     const handleClick = () => {
-        if (!children || textLength <= 200) return;
+        if (!children || textLength <= limit) return;
         setFullText(!isFullText)
     }
 
@@ -19,10 +19,10 @@ function ReadMore({ children }) {
             <ReactMarkdown
                 linkTarget={"_blank"}
                 remarkPlugins={[remarkGfm]}>
-                {!isFullText ? children.substring(0, 200) : children}
+                {!isFullText && textLength > limit ? children.substring(0, limit) + '...' : children}
             </ReactMarkdown>
             {
-                textLength > 200 &&
+                textLength > limit &&
                 <span
                     className="read-more"
                     onClick={handleClick}>
