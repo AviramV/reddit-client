@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { setTerm } from './searchBarSlice';
 import { useDispatch } from 'react-redux';
 import './SearchBar.css'
@@ -8,6 +8,7 @@ function SearchBar() {
     const [searchTerm, setSearchTerm] = useState('');
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const searchInput = useRef();
 
     const getTerm = (e) => {
         const trimmedTerm = e.target.value.trimStart();
@@ -23,12 +24,14 @@ function SearchBar() {
             search: `q=${searchTerm}`
         })
         setSearchTerm('');
+        searchInput.current.blur();
     }
 
     return (
         <form onSubmit={handleSubmit}>
             <div id="search">
                 <input className="header-input search-bar"
+                    ref={searchInput}
                     onChange={getTerm}
                     value={searchTerm}
                     type="search"
