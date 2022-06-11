@@ -3,7 +3,7 @@
     flex-direction: column;
     justify-content: space-between;
     width: min(710px, 85vw);
-    height: 20vh;
+    aspect-ratio: 3;
     border-radius: .75rem;
     background-color: var(--card-bg);
     padding: .25em 1.75%;
