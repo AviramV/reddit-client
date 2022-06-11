@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { formatCompactNumber, timeConvert, purgeString } from '../../utils/formatters';
 import dashjs from 'dashjs';
 
@@ -26,12 +26,32 @@ function Post({
     const [showComments, setShowComments] = useState(false);
     const { is_gallery, permalink, selftext } = props;
     const hasComments = commentsAmount > 0 ? true : false;
+    const videoPlayer = useRef(null);
 
     useEffect(() => {
         if (isVideo) {
             dashjs.MediaPlayerFactory.createAll('video')
         }
     }, [isVideo]);
+
+    // Stop video playback when 50% off viewport
+    useEffect(() => {
+        if (!isVideo) return;
+        const observer = new IntersectionObserver((entries) => {
+            const entry = entries[0];
+            if (!entry.isIntersecting) {
+                videoPlayer.current.pause();
+            }
+        }, { threshold: 0.5 });
+        observer.observe(videoPlayer.current);
+    }, [isVideo])
+
+    // Unmute videos onPlay
+    const handlePlay = ({ target }) => {
+        if (!target.muted) return;
+        target.muted = false;
+        target.volume = .25;
+    }
 
 
     // Return correct element according to type of media in post (link/image/video)
@@ -80,6 +100,8 @@ function Post({
                         preload="auto"
                         controls
                         poster={posterImg}
+                        onPlay={handlePlay}
+                        ref={videoPlayer}
                     >
                         <source src={dashURL} type="application/dash+xml" />
                         <source src={hlsURL} type="application/vnd.apple.mpegURL" />
@@ -101,7 +123,8 @@ function Post({
                     frameBorder="0"
                     allow="fullscreen"
                     fetchpriority="auto"
-                    title={title} />
+                    title={title}
+                />
             default:
                 break;
         }
